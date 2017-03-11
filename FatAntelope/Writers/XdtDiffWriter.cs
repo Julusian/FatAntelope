@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -132,7 +133,7 @@ namespace FatAntelope.Writers
         public override void WriteDiff(XTree tree, string file)
         {
             var doc = GetDiff(tree);
-            doc.Save(file);
+            doc.Save(new FileStream(file, FileMode.Create));
         }
 
         /// <summary>

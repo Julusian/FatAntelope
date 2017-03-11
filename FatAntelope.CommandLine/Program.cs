@@ -1,6 +1,6 @@
 ﻿using FatAntelope.Writers;
-using Microsoft.Web.XmlTransform;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Xml;
 
@@ -59,12 +59,12 @@ namespace FatAntelope.CommandLine
             Console.WriteLine("- Writing XDT transform . . .\n");
             var writer = new XdtDiffWriter();
             var patch = writer.GetDiff(tree2);
-            patch.Save(args[2]);
+            patch.Save(new FileStream(args[2], FileMode.Create));
 
-            if (args.Length > 3)
+            /*if (args.Length > 3)
             {
                 Console.WriteLine("- Applying transform to source . . .\n");
-                var source = new XmlTransformableDocument();
+                var source = new XmlTransformation();
                 source.Load(args[0]);
 
                 var transform = new XmlTransformation(patch.OuterXml, false, null);
@@ -72,11 +72,11 @@ namespace FatAntelope.CommandLine
 
                 source.Save(args[3]);
             }
-            Console.WriteLine("- Finished successfully!\n");
+            Console.WriteLine("- Finished successfully!\n");*/
             return (int)ExitCode.Success;
         }
 
-        private XmlDocument Transform(XmlDocument sourceXml, XmlDocument patchXml)
+        /*private XmlDocument Transform(XmlDocument sourceXml, XmlDocument patchXml)
         {
             var source = new XmlTransformableDocument();
             source.LoadXml(sourceXml.OuterXml);
@@ -85,12 +85,12 @@ namespace FatAntelope.CommandLine
             patch.Apply(source);
 
             return source;
-        }
+        }*/
 
         public static XTree BuildTree(string fileName)
         {
             var doc = new XmlDocument();
-            doc.Load(fileName);
+            doc.Load(new FileStream(fileName, FileMode.Open));
 
             return new XTree(doc);
         }

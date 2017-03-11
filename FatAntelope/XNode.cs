@@ -112,7 +112,7 @@ namespace FatAntelope
         {
             return XmlNode.NodeType == XmlNodeType.Text || XmlNode.NodeType == XmlNodeType.CDATA;
         }
-
+        
         public bool IsElement()
         {
             return XmlNode.NodeType == XmlNodeType.Element;
@@ -122,7 +122,7 @@ namespace FatAntelope
         {
             return ByteArrayComparer.Instance.Compare(Hash, hash2) == 0;
         }
-
+        
         public static XNode Build(XmlNode node, XNode parent)
         {
             if (node.NodeType == XmlNodeType.Attribute)

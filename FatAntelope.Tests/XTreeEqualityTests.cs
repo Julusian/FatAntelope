@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Xml;
 
@@ -197,5 +198,9 @@ namespace FatAntelope.Tests
 
             Assert.IsFalse(Enumerable.SequenceEqual(tree1.Root.Hash, tree2.Root.Hash));
         }
+    }
+
+    public class TestMethodAttribute : Attribute
+    {
     }
 }
